@@ -1,0 +1,40 @@
+Final Project Report
+Title: Bias Detection in AI Systems Using Name-Based Features and CV Metadata
+Parts A & B Combined
+
+A. Objective and Scope
+The primary goal of this project was to investigate how AI systems might encode and reproduce social biases when trained on datasets containing human-identifying information, such as names. Specifically, the project examined how racial and national identities can be inferred or misrepresented based on name features found in image metadata and CVs.
+Part A focused on analyzing potential racial bias by comparing structural and phonetic patterns in names from individuals labeled as either Black or White. This analysis aimed to determine whether these differences might lead to unequal treatment in downstream machine learning models.
+Part B built on this foundation by experimenting with public pre-trained language models to infer nationality from anonymized CV text. This allowed for the exploration of how AI models interpret demographic cues and the extent to which these interpretations align with or diverge from real-world identity.
+This project specifically emphasized three protected characteristics—race, nationality, and (in extended work) gender—and aimed to demonstrate how methods like exploratory data analysis (EDA), natural language processing (NLP), and fairness evaluation could be used to detect and address bias in training data and model outputs. The ethical foundation of this project is based on the recognition that datasets are not neutral—they often reflect historical inequalities, and if not addressed, these inequities can be reproduced by algorithms.
+
+B. Data Description and Collection Methods
+In Part A, the dataset was manually constructed by combining two structured CSV files containing image metadata and labeled racial identity. Each file represented either Black or White individuals and included fields such as image_path, individual_name, and race. The final dataset was balanced, with 50 entries from each group, allowing for a controlled examination of name-based features without confounding class imbalance.
+For Part B, a small CV dataset was manually created, containing anonymized CV entries with realistic education, work history, and language use. Each entry was associated with a known nationality to serve as a reference label. The dataset was designed to simulate how a public language model might interpret personal and linguistic features for nationality inference. Inference was performed using the Hugging Face inference API with the model tiiuae/falcon-rw-1b, which was queried through public access.
+
+C. Representation, Biases, and Potential Consequences
+While the Part A dataset was quantitatively balanced, the analysis revealed qualitative disparities in name structures. Black individuals’ names tended to be longer and more variable in syllable count and vowel usage. These features, though subtle, could serve as proxy variables for racial identity in models and potentially result in disparate outcomes.
+In Part B, the nationality inference task revealed the potential for stereotyping or oversimplification by language models. The models occasionally made confident predictions based on superficial linguistic patterns, demonstrating how over-reliance on such features might misrepresent individuals, especially those with multicultural or less “typical” profiles.
+Both datasets lacked explicit attributes like age or gender, which limited the scope of representation but highlighted the importance of scrutinizing even seemingly neutral fields like names. The consequences of misrepresentation in automated systems are significant—ranging from biased hiring algorithms to unfair identification systems.
+
+D. Key Learning
+Through this project, I gained a deeper understanding of how bias can emerge not only from unbalanced data but also from the structural and linguistic features that encode demographic signals. I also learned how to engineer features from text, conduct EDA with fairness in mind, and critically evaluate the assumptions baked into model predictions.
+I became familiar with tools and libraries such as jellyfish for phonetic encoding, matplotlib and seaborn for visualization, and Hugging Face’s inference API for integrating public models into an analysis pipeline.
+
+E. Challenges and Problem-Solving Strategies
+One key challenge was accessing reliable inference without a paid API key. This was solved by designing the code to allow anonymous access to public models, while warning the user of limitations. Another challenge was the lack of diversity in the available dataset. To address this, I manually created balanced examples and augmented them with additional features such as syllable counts and soundex encoding to increase analytical depth.
+Parsing and interpreting model outputs also posed challenges, especially given that many language models return free-text outputs rather than structured JSON. This was handled by enforcing structured response formats via prompt engineering and adding error handling to cleanly parse or debug malformed responses.
+
+F. Successes, improvemnts and future direction
+The project successfully demonstrated a full end-to-end pipeline—from data collection and cleaning, to bias detection and ethical reflection. The clear patterns identified in name structure between groups, and the ability to elicit model outputs using prompt-based interfaces, showed that AI systems are indeed sensitive to such input features.
+The structured and modular design of the codebase also made it easy to expand the analysis or apply it to new protected attributes, such as nationality or gender. If I were to revisit this project, I would focus on increasing dataset size and diversity to allow for more statistically robust analysis. I would also incorporate fairness auditing tools such as Google’s What-If Tool or IBM’s AIF360 library to provide interactive and formal fairness diagnostics.
+In future versions, I would also train a classifier to predict race or nationality from names, evaluate subgroup performance using metrics such as precision, recall, and F1-score, and use fairness-aware training techniques to mitigate observed disparities. These steps would make the work more applicable to real-world deployment scenarios where such predictive systems are used.
+
+H. Ethical Statement
+This project is grounded in the principle that fairness and transparency are essential in AI development. The datasets used in both parts were manually curated or simulated, and every effort was made to avoid reinforcing harmful stereotypes or exposing sensitive identities.
+That said, the act of inferring demographic characteristics such as race or nationality—even for research purposes—must be approached with care. These attributes are socially constructed and context-dependent, and using them as ground truths risks oversimplifying complex identities.
+The goal of this work is not to create or support systems that classify people by race or nationality, but rather to examine how existing models might already be doing so implicitly. By revealing these tendencies, the project aims to support more ethical and equitable AI design practices.
+
+Conclusion
+This combined project provides a comprehensive framework for investigating bias in AI systems, particularly through the lens of names and CV-based features. It demonstrates how linguistic patterns can act as proxies for race or nationality and influence model behavior in unintended ways. Through a careful combination of exploratory analysis, inference testing, and ethical reflection, the project advocates for responsible, inclusive, and bias-aware AI development.
+The methodology developed here can easily be extended to other protected characteristics and larger datasets, making it a valuable template for future fairness-focused research in machine learning and data science.
