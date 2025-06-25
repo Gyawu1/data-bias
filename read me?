@@ -1,0 +1,31 @@
+data-bias
+
+Bias Detection in AI Nationality Inference from CV Data
+
+Overview
+
+This project investigates potential biases in AI models when predicting **nationality, race, and gender** from CV data and image metadata. It uses **natural language processing (NLP)** and **computer vision** tools to explore fairness and ethical implications in real-world AI systems.
+
+We analyze pretrained models (e.g., from Hugging Face and Groq) on how they infer demographic attributes and measure performance disparities across groups. The aim is to build tools that can detect, visualize, and mitigate algorithmic bias.
+
+Key Features
+
+- Bulk CV Upload:** Upload CSV files containing name, image paths, and metadata
+- AI Inference:** Use language models (e.g., Groq API, Hugging Face) to predict nationality, race, and gender
+- Bias Metrics:** Evaluate fairness using group-wise accuracy, demographic parity, and chi-square stats
+- Bias Mitigation:** Experiment with SMOTE oversampling, fairness-aware training, and data augmentation
+- Dashboard:** Visualize model performance, distributions, and fairness metrics interactively
+- Voice Support:** English-only speech interaction for hands-free summarization (optional)
+
+
+Project Structure
+
+ai-bias-cv-project/
+├── data/                      # the CSVs datasets for part B 
+                                    black individuals 
+                                    white individuals 
+├── scripts/                   # the python scripts for part A then part B
+                                    part A 
+                                    part B
+├── requirements.txt           # python dependencies
+└── README.md                  # project documentation
